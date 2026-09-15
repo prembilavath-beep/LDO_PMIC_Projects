@@ -9,6 +9,32 @@ The LDO is designed and simulated in **Cadence Virtuoso/Spectre**.
 
 ---
 
+# PMOS LDO Regulator Design and Analysis
+
+## Design & Testbench of a PMOS LDO with BGR Reference,
+## 80-dB VCVS Error Amplifier and Miller Compensation
+
+This project presents the design, simulation, and analysis of a
+PMOS-based Low-Dropout Regulator (LDO).
+
+The LDO consists of:
+
+- Bandgap Reference (BGR)
+- Ideal 80-dB VCVS error amplifier
+- PMOS pass transistor
+- Feedback voltage divider
+- Miller compensation network
+- 500-pF output capacitor
+
+The reference voltage used by the LDO error amplifier is generated
+by the **Bandgap Reference (BGR)** rather than being generated
+internally by the error amplifier.
+
+The nominal reference voltage is approximately:
+
+```text
+VREF ≈ 0.8 V
+
 ## Project Specifications
 
 | Parameter | Specification |
