@@ -1,2 +1,72 @@
 # LDO_PMIC_Projects
-Design &amp; testbench of an LDO regulator featuring an opamp (60dB gain) &amp; PMOS pass transistor. Specs: Vin=1.8V, Vout=1.5V, Iload=20-100mA, Cout=500pF, PSRR&lt;-40dB@100kHz, efficiency≥83%. Includes PSRR, transient, loop stability, line/load regulation analysis across 0°C to 60°C.
+# PMOS LDO Regulator Design and Analysis
+
+## Design & Testbench of a Low-Dropout Regulator Using an Ideal VCVS Error Amplifier
+
+This project presents the design, simulation, and analysis of a **PMOS-based Low-Dropout Regulator (LDO)** using an ** 60-dB  error amplifier**. The project also includes the design of a **5-transistor OTA** .
+
+The LDO is designed and simulated in **Cadence Virtuoso/Spectre**.
+
+---
+
+## Project Specifications
+
+| Parameter | Specification |
+|-----------|---------------|
+| Input Voltage (`Vin`) | 1.8 V |
+| Output Voltage (`Vout`) | 1.5 V |
+| Load Current | 20 mA – 100 mA |
+| Nominal Load Current | 50 mA |
+| Output Capacitor (`Cout`) | 500 pF |
+| Error Amplifier | Ideal VCVS |
+| Error Amplifier Gain | 80 dB |
+| PSRR @ 100 kHz | < -40 dB |
+| Efficiency | ≥ 83% |
+| DC Output Error | ≤ ±0.1 mV |
+| Load Regulation | ≤ 2% |
+| Line Regulation | ≤ 2% |
+| Load Transient | 20 mA ↔ 50 mA |
+| Load Step Edge Time | 10 ns |
+| Maximum Overshoot/Undershoot | ≤ 150 mV |
+| Settling Time | < 125 ns |
+| Temperature Corners | 0°C, 27°C, 60°C |
+
+---
+
+## 1. LDO Architecture
+
+The LDO consists of the following major blocks:
+
+```text
+                    Vin = 1.8 V
+                        |
+                        |
+                   +----+----+
+                   |  PMOS   |
+                   |  Pass   |
+                   |   FET   |
+                   +----+----+
+                        |
+                        +---------- Vout = 1.5 V
+                        |              |
+                        |             Cout
+                        |            500 pF
+                        |              |
+                        |             GND
+                        |
+                    Feedback
+                        |
+                   +----+----+
+                   | R1 / R2 |
+                   | Divider |
+                   +----+----+
+                        |
+                       VFB
+                        |
+                  +-----+------+
+                  |   Error    |
+           Vref ->| Amplifier  |----> PMOS Gate
+                  |  80 dB     |
+                  +------------+
+
+Note: i have not met all the specifications as mentioned above 
